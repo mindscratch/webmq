@@ -1,4 +1,4 @@
-
+WebMQ [![Build Status](https://travis-ci.org/mindscratch/webmq.png)](https://travis-ci.org/mindscratch/webmq)
 
 ## Architecture
 

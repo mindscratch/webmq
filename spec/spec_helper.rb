@@ -8,6 +8,15 @@ require 'rspec/autorun'
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
+if ENV["CI"]
+  require "simplecov"
+  require "coveralls"
+  SimpleCov.formatter = Coveralls::SimpleCov::Formatter
+  SimpleCov.start do
+    add_filter "spec"
+  end
+end
+
 RSpec.configure do |config|
   config.include RSpec::Rails::RequestExampleGroup, type: :request, example_group: {
     file_path: /spec\/api/

@@ -11,4 +11,9 @@ gem 'grape-swagger'
 
 group :development, :test do
   gem 'rspec-rails'
+
+  if ENV["CI"]
+    # code coverage
+    gem "coveralls", require: false
+  end
 end
