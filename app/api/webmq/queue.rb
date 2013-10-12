@@ -17,17 +17,16 @@ module Webmq
         name
       end
 
-      # @param [Rack::Request]  request     the request
-      # @param [String] resource_name       the name of the resource
-      # @param [String] queue_name          the name of the queue
-      # @param [String,Numeric] item_id     the ID of the item the URL will reference
+      # @param [Rack::Request]  request   the request
+      # @param [String] resource_name     the name of the resource
+      # @param [Hash] message             the message
       # @return [String]
-      def build_item_url(request, resource_name, queue_name, item_id)
+      def build_message_url(request, resource_name, message)
         url = "#{request.scheme}://#{request.host}"
         unless [80, 443].include? request.port
           url.concat(":#{request.port}")
         end
-        url.concat "/#{resource_name}/#{queue_name}/#{item_id}"
+        url.concat "/#{resource_name}/#{message[:queue_name]}/#{message[:id]}"
       end
     end
 
@@ -45,20 +44,27 @@ module Webmq
       end
       route_param :queue_name do
         get :dequeue do
-          {val: "foo-#{params[:queue_name]}"}
+          queue = QueueFacade.new params[:queue_name]
+          message = queue.dequeue
+          message
         end
       end
 
       desc "Enqueue an item"
       params do
-        requires :queue_name, type: String, desc: "The name of the queue"
+        requires :queue_name, type: String, desc: "the name of the queue"
+        # TODO add headers?
+        requires :payload, type: Hash, desc: "the payload to enqueue"
       end
       route_param :queue_name do
         post do
+          queue = QueueFacade.new params[:queue_name]
+          message = queue.enqueue params[:payload]
+
           request = Rack::Request.new env
-          url = build_item_url request, resource_name, params[:queue_name], Webmq.generate_id
+          url = build_message_url request, resource_name, message
           header 'Location', url
-          {val: 123}
+          message
         end
       end
     end
