@@ -17,15 +17,17 @@ module Webmq
         name
       end
 
-      # @param [Rack::Request]  request
-      # @param [String,Numeric] item_id   the ID of the item the URL will reference
+      # @param [Rack::Request]  request     the request
+      # @param [String] resource_name       the name of the resource
+      # @param [String] queue_name          the name of the queue
+      # @param [String,Numeric] item_id     the ID of the item the URL will reference
       # @return [String]
-      def build_item_url(request, item_id)
+      def build_item_url(request, resource_name, queue_name, item_id)
         url = "#{request.scheme}://#{request.host}"
         unless [80, 443].include? request.port
           url.concat(":#{request.port}")
         end
-        url.concat "/#{resource_name}/#{params[:queue_name]}/#{item_id}"
+        url.concat "/#{resource_name}/#{queue_name}/#{item_id}"
       end
     end
 
@@ -54,7 +56,7 @@ module Webmq
       route_param :queue_name do
         post do
           request = Rack::Request.new env
-          url = build_item_url request, Webmq.generate_id
+          url = build_item_url request, resource_name, params[:queue_name], Webmq.generate_id
           header 'Location', url
           {val: 123}
         end
