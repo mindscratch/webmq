@@ -1,14 +1,6 @@
 require 'spec_helper'
 
 describe Webmq::Queue do
-  describe "GET /queues" do
-    it "returns an empty array" do
-      get "/queues"
-      expect(response.status).to eq 200
-      expect(JSON.parse(response.body)).to be_empty
-    end
-  end
-
   describe "api helpers" do
     let(:api) { obj = Object.new; obj.extend Webmq::Queue.helpers; obj}
 
@@ -48,6 +40,23 @@ describe Webmq::Queue do
           expect(url).to match /8080/
         end
       end
+    end
+  end
+
+  describe "GET /queues" do
+    it "responsds with a 200" do
+      get "/queues"
+      expect(response.status).to eq 200
+    end
+
+    it "returns an empty array" do
+      get "/queues"
+      expect(JSON.parse(response.body)).to be_empty
+    end
+
+    it "should invoke QueuesFacade#names_list" do
+      QueuesFacade.any_instance.should_receive(:names_list).and_call_original
+      get "/queues"
     end
   end
 

@@ -1,10 +1,15 @@
-# WebMQ 
+# WebMQ
 
 A web based message queue.
 
-[![Build Status](https://travis-ci.org/mindscratch/webmq.png)](https://travis-ci.org/mindscratch/webmq) 
+[![Build Status](https://travis-ci.org/mindscratch/webmq.png)](https://travis-ci.org/mindscratch/webmq)
 [![Coverage Status](https://coveralls.io/repos/mindscratch/webmq/badge.png?branch=master)](https://coveralls.io/r/mindscratch/webmq?branch=master)
 [![Dependency Status](https://gemnasium.com/mindscratch/webmq.png)](https://gemnasium.com/mindscratch/webmq)
+
+## Links
+
+* API Documentation (coming soon)
+* [Source Code Documentation](http://rubydoc.info/github/mindscratch/webmq/)
 
 ## Rubies
 
