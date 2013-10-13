@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
+gem 'rails', '4.0.0'
 gem 'rails-api'
 
 gem 'sqlite3', '~> 1.3.7', :platforms => [ :ruby ]

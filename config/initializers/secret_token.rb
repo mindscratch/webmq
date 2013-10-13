@@ -10,10 +10,11 @@
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
 
-# Although this is not needed for an api-only application, rails4 
-# requires secret_key_base or secret_toke to be defined, otherwise an 
+# Although this is not needed for an api-only application, rails4
+# requires secret_key_base or secret_toke to be defined, otherwise an
 # error is raised.
 # Using secret_token for rails3 compatibility. Change to secret_key_base
 # to avoid deprecation warning.
 # Can be safely removed in a rails3 api-only application.
 Webmq::Application.config.secret_token = ENV['WEBMQ_SECRET_TOKEN']
+Webmq::Application.config.secret_key_base = ENV['WEBMQ_SECRET_KEY_BASE']
