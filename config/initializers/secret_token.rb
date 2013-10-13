@@ -16,5 +16,14 @@
 # Using secret_token for rails3 compatibility. Change to secret_key_base
 # to avoid deprecation warning.
 # Can be safely removed in a rails3 api-only application.
-Webmq::Application.config.secret_token = ENV['WEBMQ_SECRET_TOKEN']
-Webmq::Application.config.secret_key_base = ENV['WEBMQ_SECRET_KEY_BASE']
+case Rails.env
+when 'development', 'test'
+  secret_token = "a" * 30
+  secret_key_base = secret_token
+else
+  secret_token = ENV['WEBMQ_SECRET_TOKEN']
+  secret_key_base = ENV['WEBMQ_SECRET_KEY_BASE']
+end
+
+Webmq::Application.config.secret_token = secret_token
+Webmq::Application.config.secret_key_base = secret_key_base
