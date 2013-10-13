@@ -11,6 +11,7 @@ gem 'grape'
 gem 'grape-swagger'
 
 group :development, :test do
+  gem 'yard'
   gem 'rspec-rails'
 
   if ENV["CI"]

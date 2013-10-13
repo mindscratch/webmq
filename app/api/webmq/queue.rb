@@ -17,9 +17,9 @@ module Webmq
         name
       end
 
-      # @param [Rack::Request]  request   the request
-      # @param [String] resource_name     the name of the resource
-      # @param [Hash] message             the message
+      # @param request [Rack::Request]  the request
+      # @param resource_name [String]   the name of the resource
+      # @param message [Hash]           the message
       # @return [String]
       def build_message_url(request, resource_name, message)
         url = "#{request.scheme}://#{request.host}"

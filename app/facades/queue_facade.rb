@@ -8,7 +8,7 @@ class QueueFacade
 
   # Enqueue a message
   #
-  # @param [Hash] payload   the data for the message
+  # @param payload [Hash] the data for the message
   #
   # @return [Hash] the message  #TODO this could return an actual Message object
   def enqueue(payload)
