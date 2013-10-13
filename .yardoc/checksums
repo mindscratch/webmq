@@ -1,5 +1,6 @@
 lib/webmq.rb 520e7702f0d554d4e926847521224b6e35655bb6
 app/api/api.rb 9d3502c9c9687cd069de2151942c6487fa375bda
-app/api/webmq/queue.rb f60cdb84fe4e58ecb8df5392f530d11398b35c1a
+app/api/webmq/queue.rb 035b2a3fce4de0c5ee5f7689ec858ce508c1b8dd
 app/facades/queue_facade.rb 503b5f49fb0e159e37b0708bd70120373dd0f8bb
+app/facades/queues_facade.rb bd62c3315f4f495c56e6ae8f8c1be0df0ff19ad7
 app/controllers/application_controller.rb f1f66968b9c5a631cc658ffe00dfafa97d57dcdc
