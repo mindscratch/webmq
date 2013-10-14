@@ -21,6 +21,11 @@ class QueueFacade
     message
   end
 
-  def dequeue(message_id)
+  def dequeue
+    backend.first
+  end
+
+  def count
+    backend.count
   end
 end

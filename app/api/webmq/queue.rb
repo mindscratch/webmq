@@ -36,7 +36,7 @@ module Webmq
     desc "Return the list of available queues"
     resource :queues do
       get do
-        QueuesFacade.new.names_list
+        QueuesFacade.new(backend).names_list
       end
     end
 
