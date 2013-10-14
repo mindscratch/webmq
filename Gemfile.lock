@@ -136,6 +136,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-jdbcsqlite3-adapter (~> 1.2.9)
+  atomic
   coveralls
   grape
   grape-swagger

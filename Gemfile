@@ -6,6 +6,8 @@ gem 'rails-api'
 gem 'sqlite3', '~> 1.3.7', :platforms => [ :ruby ]
 gem 'activerecord-jdbcsqlite3-adapter', "~> 1.2.9", :platforms => [ :jruby ]
 
+gem 'atomic'
+
 # API
 gem 'grape'
 gem 'grape-swagger'

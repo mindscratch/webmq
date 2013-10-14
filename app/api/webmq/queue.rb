@@ -2,9 +2,12 @@ require 'webmq'
 
 module Webmq
   class Queue < Grape::API
+
     format :json
 
     helpers do
+      include BackendStrategy
+
       def resource_name
         name = nil
         routes.find do |route|
@@ -44,7 +47,7 @@ module Webmq
       end
       route_param :queue_name do
         get :dequeue do
-          queue = QueueFacade.new params[:queue_name]
+          queue = QueueFacade.new params[:queue_name], backend
           message = queue.dequeue
           message
         end
@@ -58,7 +61,7 @@ module Webmq
       end
       route_param :queue_name do
         post do
-          queue = QueueFacade.new params[:queue_name]
+          queue = QueueFacade.new params[:queue_name], backend
           message = queue.enqueue params[:payload]
 
           request = Rack::Request.new env

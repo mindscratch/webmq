@@ -1,9 +1,11 @@
 require 'spec_helper'
 
 describe QueueFacade do
+  let(:backend) { ArrayBackend.new }
+
   describe "#initialize" do
     it "should accept a queue name" do
-      queue = QueueFacade.new "test"
+      queue = QueueFacade.new "test", backend
       expect(queue.queue_name).to eq "test"
     end
   end

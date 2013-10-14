@@ -1,9 +1,10 @@
 # The Queue facade is responsible for performing queue related operations using an appropriate strategy
 class QueueFacade
-  attr_reader :queue_name
+  attr_reader :queue_name, :backend
 
-  def initialize(queue_name)
+  def initialize(queue_name, backend)
     @queue_name = queue_name
+    @backend = backend
   end
 
   # Enqueue a message
@@ -14,6 +15,9 @@ class QueueFacade
   def enqueue(payload)
     message_id = Webmq.generate_id
     message = {id: message_id, queue_name: queue_name, payload: payload}
+
+    backend.store message
+
     message
   end
 
