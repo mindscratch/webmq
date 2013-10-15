@@ -50,6 +50,7 @@ describe Webmq::Queue do
     end
 
     it "returns an empty array" do
+      Webmq::Application.config.backend = ArrayBackend.new
       get "/queues"
       expect(JSON.parse(response.body)).to be_empty
     end
